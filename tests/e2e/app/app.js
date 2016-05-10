@@ -19,15 +19,15 @@
             expect(this.$message.getText()).toBe('');
         });
 
-        it('should say "not clicked" after one click', function () {
+        it('should say "clicked" after one click', function () {
             this.$button.click()
             expect(this.$message.getText()).toBe('clicked');
         });
 
-        it('should say "clicked" after one click', function () {
+        it('should say "clicked again" after two clicks', function () {
             this.$button.click()
             this.$button.click()
-            expect(this.$message.getText()).toBe('not clicked');
+            expect(this.$message.getText()).toBe('clicked again');
         });
 
     });
