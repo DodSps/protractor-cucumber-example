@@ -1,7 +1,7 @@
-Feature: Sample
+Feature: App
 
-Scenario: First sample
-Given this is the first sample
+Scenario: First app
+Given this is the first app
 
-Scenario: Second sample
-Given this is the second sample
+Scenario: Second app
+Given this is the second app
