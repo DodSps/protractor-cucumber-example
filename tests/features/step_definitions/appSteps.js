@@ -7,13 +7,11 @@ module.exports = function appSteps() {
     });
 
     this.When('I click the button once', function () {
-        return this.clickButton('Click me');
+        return this.clickButton();
     });
 
     this.When('I click the button twice', function () {
-        return this.clickButton('Click me').then(() => {
-            return this.clickButton('Click me');
-        });
+        return this.clickButton().then(this.clickButton);
     });
 
     this.Then('The message should be empty', function () {

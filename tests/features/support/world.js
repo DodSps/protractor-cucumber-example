@@ -3,8 +3,8 @@ function World() {
         return browser.get(path);
     };
 
-    this.clickButton = function (buttonText) {
-        return element(by.buttonText(buttonText)).click();
+    this.clickButton = function () {
+        return element(by.buttonText('Click me')).click();
     };
 
     this.getMessage = function () {
