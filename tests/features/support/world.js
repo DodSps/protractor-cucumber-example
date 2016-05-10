@@ -1,5 +1,4 @@
-console.log('world');
-module.exports = function () {
+module.exports = function cucumberSetup () {
 
     this.World = function World() {
         // this property will be available in step definitions

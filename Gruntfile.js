@@ -14,7 +14,8 @@ module.exports = function (grunt) {
         config: {
             files: {
                 e2eTests: 'tests/e2e/**/*.js',
-                features: 'tests/features/*.feature'
+                features: 'tests/features/**/*.feature',
+                featureHelpers: 'tests/features/**/*.js'
             }
         }
     });
@@ -46,7 +47,8 @@ module.exports = function (grunt) {
         frameworkPath: require.resolve('protractor-cucumber-framework'),
         // relevant cucumber command line options
         cucumberOpts: {
-            format: 'summary'
+            format: 'summary',
+            require: '<%= config.files.featureHelpers %>'
         }
     };
 
