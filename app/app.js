@@ -24,7 +24,7 @@
             $scope.clicked = false;
             $scope.click = function () {
                 if ($scope.clicked) {
-                    $scope.message = 'not clicked'
+                    $scope.message = 'clicked again'
                     $scope.clicked = false;
                 } else {
                     $scope.message = 'clicked'

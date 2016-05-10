@@ -13,13 +13,15 @@ module.exports = function (grunt) {
     grunt.initConfig({
         config: {
             files: {
-                e2eTests: 'tests/e2e/**/*.js'
+                e2eTests: 'tests/e2e/**/*.js',
+                features: 'tests/features/**/*.feature',
+                featureHelpers: 'tests/features/**/*.js'
             }
         }
     });
 
     grunt.registerTask('default', ['test']);
-    grunt.registerTask('test', ['protractor:e2e']);
+    grunt.registerTask('test', ['protractor:e2e', 'protractor:features']);
 
     // DRY protractor args between using Jasmine and Cucumber.
 
@@ -37,6 +39,18 @@ module.exports = function (grunt) {
             defaultTimeoutInterval: 30000
         }
     };
+    // Cucumber specific from http://angular.github.io/protractor/#/frameworks#using-cucumber.
+    var protractorCucumberArgs = {
+        // set to 'custom' instead of cucumber.
+        framework: 'custom',
+        // path relative to the current config file
+        frameworkPath: require.resolve('protractor-cucumber-framework'),
+        // relevant cucumber command line options
+        cucumberOpts: {
+            format: 'summary',
+            require: '<%= config.files.featureHelpers %>'
+        }
+    };
 
     // Build protractor spec args for e2e tests (using Jasmine).
     var e2eArgs = {
@@ -45,6 +59,14 @@ module.exports = function (grunt) {
         ]
     };
     Object.assign(e2eArgs, protractorArgs, protractorJasmineArgs);
+
+    // Build protractor spec args for feature tests (using Cucumber).
+    var featureArgs = {
+        specs: [
+            '<%= config.files.features %>'
+        ]
+    };
+    Object.assign(featureArgs, protractorArgs, protractorCucumberArgs);
 
     grunt.config.merge({
         protractor: {
@@ -57,6 +79,11 @@ module.exports = function (grunt) {
             e2e: {
                 options: {
                     args: e2eArgs
+                }
+            },
+            features: {
+                options: {
+                    args: featureArgs
                 }
             }
         }
