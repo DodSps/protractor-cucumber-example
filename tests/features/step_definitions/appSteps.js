@@ -3,7 +3,7 @@ var assert = require('assert');
 module.exports = function appSteps() {
 
     this.Given('I am on the home page', function () {
-        return browser.get('/');
+        return this.visit('/');
     });
 
     this.When('I click the button once', function () {
