@@ -1,11 +1,17 @@
-module.exports = function cucumberSetup () {
-
-    this.World = function World() {
-        // this property will be available in step definitions
-        this.prop = 'Hello from the World!';
-
-        this.greetings = function(name) {
-            console.log('\n----Hello ' + name);
-        };
+function World() {
+    this.visit = function (path) {
+        return browser.get(path);
     };
+
+    this.clickButton = function (buttonText) {
+        return element(by.buttonText(buttonText)).click();
+    };
+
+    this.getMessage = function () {
+        return element(by.binding('message')).getText();
+    };
+}
+
+module.exports = function cucumberSetup () {
+    this.World = World;
 };
